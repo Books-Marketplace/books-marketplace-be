@@ -1,7 +1,9 @@
 package com.alibou.books_marketplace_be.book;
 
 import com.alibou.books_marketplace_be.common.AbstractEntity;
+import com.alibou.books_marketplace_be.user.User;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +24,7 @@ public class Book extends AbstractEntity {
     private double price;
     private String description;
     private CategoryName category;
-    //private User Seller; to be added once user entity is created
+    @ManyToOne
+    private User seller;
 
 }
