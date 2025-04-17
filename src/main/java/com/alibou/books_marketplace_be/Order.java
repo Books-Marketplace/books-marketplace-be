@@ -25,7 +25,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Order extends AbstractEntity {
-
+// hello
     @Column(nullable = false)
     private BigDecimal price;
     @ManyToOne
