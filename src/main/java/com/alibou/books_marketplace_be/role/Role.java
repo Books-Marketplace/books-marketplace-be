@@ -1,5 +1,6 @@
 package com.alibou.books_marketplace_be.role;
 
+import com.alibou.books_marketplace_be.common.AbstractEntity;
 import com.alibou.books_marketplace_be.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,13 +17,11 @@ import java.util.Set;
 @SuperBuilder
 @Entity
 @Table(name = "ROLES")
-public class Role {
-    @Id
-    @GeneratedValue
-    private long id;
+public class Role extends AbstractEntity {
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private RoleName name;
     @ManyToMany(mappedBy = "roles")
-    private Set<User> users = new HashSet<>();
+    private Set<User> users;
 }

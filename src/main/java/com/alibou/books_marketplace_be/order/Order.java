@@ -1,7 +1,8 @@
-package com.alibou.books_marketplace_be;
+package com.alibou.books_marketplace_be.order;
 
 import com.alibou.books_marketplace_be.book.Book;
 import com.alibou.books_marketplace_be.common.AbstractEntity;
+import com.alibou.books_marketplace_be.order_details.OrderDetails;
 import com.alibou.books_marketplace_be.user.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
@@ -25,13 +26,14 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Order extends AbstractEntity {
-// hello
     @Column(nullable = false)
     private BigDecimal price;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User buyer;
-    @OneToMany
-    private List<Book> books;
+    // on va ajouter une autre classe order_details
+    @OneToMany(mappedBy = "orders")
+    private List<OrderDetails> orderDetails;
+
 
 }

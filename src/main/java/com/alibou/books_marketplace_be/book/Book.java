@@ -1,15 +1,16 @@
 package com.alibou.books_marketplace_be.book;
 
 import com.alibou.books_marketplace_be.common.AbstractEntity;
+import com.alibou.books_marketplace_be.order_details.OrderDetails;
 import com.alibou.books_marketplace_be.user.User;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,6 +26,9 @@ public class Book extends AbstractEntity {
     private String description;
     private CategoryName category;
     @ManyToOne
+    @JoinColumn(name = "user_id",nullable = false)
     private User seller;
+    @OneToMany(mappedBy = "book")
+    private List<OrderDetails> orderDetails;
 
 }
