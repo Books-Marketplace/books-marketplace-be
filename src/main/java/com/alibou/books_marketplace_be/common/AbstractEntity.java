@@ -25,7 +25,7 @@ public abstract class AbstractEntity {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private String id;
 
     @CreatedDate
     @Column(updatable = false, nullable = false)
