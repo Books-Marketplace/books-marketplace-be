@@ -5,6 +5,10 @@ import com.alibou.books_marketplace_be.common.AbstractEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,11 +25,17 @@ import java.util.List;
 @SuperBuilder
 @Table(name = "CARTS")
 public class Cart extends AbstractEntity {
+    @NotNull
+    @Positive
     private BigDecimal unitPrice;
+    @NotBlank
     private String title;
+
     private int quantity;
+    @NotNull
+    @PositiveOrZero
     private BigDecimal totalPrice;
-    @OneToMany(mappedBy = "book")
+    @OneToMany(mappedBy = "cart")
     private List<Book> books;
 
 }

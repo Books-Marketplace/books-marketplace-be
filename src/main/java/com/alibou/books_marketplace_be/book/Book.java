@@ -5,6 +5,9 @@ import com.alibou.books_marketplace_be.common.AbstractEntity;
 import com.alibou.books_marketplace_be.rate.Rate;
 import com.alibou.books_marketplace_be.user.User;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,11 +25,16 @@ import java.util.List;
 @SuperBuilder
 @Table(name = "BOOKS")
 public class Book extends AbstractEntity {
+    @NotBlank
     private String title;
+    @NotBlank
     private String author;
+    @NotNull
+    @Positive
     private BigDecimal price;
     private String description;
     private String image;
+    @NotNull
     @Enumerated(EnumType.STRING)
     private CategoryName category;
     @ManyToOne
@@ -39,11 +47,6 @@ public class Book extends AbstractEntity {
     private User admin;
     @ManyToMany(mappedBy = "favoriteBooks")
     private List<User> favoritedBy;
-
-
-
-
-
 
 
 }

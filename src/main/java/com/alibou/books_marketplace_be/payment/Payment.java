@@ -6,6 +6,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,11 +28,22 @@ import java.util.Date;
 @SuperBuilder
 @Table(name = "PAYMENTS")
 public class Payment extends AbstractEntity {
+
+    @NotNull
     @OneToOne
     @JoinColumn(name = "order_id")
     private Order order;
+
+    @NotBlank
     private String cardNumber;
+
+    @NotNull
+    @Positive
     private BigDecimal amount;
+
+    @NotBlank
     private String cvc;
+
+    @NotNull
     private Date expirationDate;
 }
