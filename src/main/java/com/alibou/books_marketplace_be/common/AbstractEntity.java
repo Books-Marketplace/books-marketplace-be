@@ -37,9 +37,9 @@ public abstract class AbstractEntity {
 
     @CreatedBy
     @Column(nullable = false, updatable = false)
-    private Long createdBy;
+    private String createdBy;
 
     @LastModifiedBy
     @Column(insertable = false)
-    private Long lastModifiedBy;
+    private String lastModifiedBy;
 }

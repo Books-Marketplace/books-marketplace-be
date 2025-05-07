@@ -3,11 +3,8 @@ package com.alibou.books_marketplace_be.order;
 import com.alibou.books_marketplace_be.common.AbstractEntity;
 import com.alibou.books_marketplace_be.payment.Payment;
 import com.alibou.books_marketplace_be.shippingaddress.ShippingAddress;
-import com.alibou.books_marketplace_be.user.User;
+import com.alibou.books_marketplace_be.user.UserInformation;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +12,7 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -25,18 +22,12 @@ import java.util.Date;
 @SuperBuilder
 @Table(name = "ORDERS")
 public class Order extends AbstractEntity {
-    @NotNull
-    private Date date;
-    @NotNull
-    @Positive
+    private LocalDateTime date;
     private BigDecimal totalPrice;
-    @NotNull
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User buyer;
-    @NotBlank
+    @JoinColumn(name = "buyer_id")
+    private UserInformation buyer;
     private String orderNumber;
-    @NotBlank
     private String orderStatus;
     @OneToOne
     @JoinColumn(name = "payment_id")

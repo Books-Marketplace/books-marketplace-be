@@ -3,13 +3,9 @@ package com.alibou.books_marketplace_be.user;
 import com.alibou.books_marketplace_be.book.Book;
 import com.alibou.books_marketplace_be.common.AbstractEntity;
 import com.alibou.books_marketplace_be.order.Order;
-import com.alibou.books_marketplace_be.rate.Rate;
-import com.alibou.books_marketplace_be.role.Role;
+import com.alibou.books_marketplace_be.payment.Payment;
+import com.alibou.books_marketplace_be.shippingaddress.ShippingAddress;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,38 +20,27 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-@Table(name = "USERS")
-public class User extends AbstractEntity {
-    @NotNull
+@Table(name = "USERS_INFORMATION")
+public class UserInformation extends AbstractEntity {
     @Column(unique = true)
-    private String keycloakId;
-    @NotBlank
-    @Size(min = 2)
     private String fullName;
-    @NotBlank
-    @Email
     @Column(unique = true)
     private String email;
-    @NotBlank
-    @Size(min = 8)
-    private String password;
     private String phone;
-    @Enumerated
-    private Role role;
-    @OneToMany(mappedBy = "admin")
-    private List<Book> books;
+
     @OneToMany(mappedBy = "buyer")
     private List<Order> orders;
-    @OneToMany(mappedBy = "buyer")
-    private List<Rate> ratings;
     @ManyToMany
     @JoinTable(
             name = "wishlist",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id")
     )
-    private List<Book> favoriteBooks;
-
+    private List<Book> whishlist;
+    @ManyToOne
+    private ShippingAddress shippingAddress;
+    @ManyToOne
+    private Payment card;
 
 
 }

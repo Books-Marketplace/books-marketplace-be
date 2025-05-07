@@ -2,12 +2,8 @@ package com.alibou.books_marketplace_be.book;
 
 import com.alibou.books_marketplace_be.cart.Cart;
 import com.alibou.books_marketplace_be.common.AbstractEntity;
-import com.alibou.books_marketplace_be.rate.Rate;
-import com.alibou.books_marketplace_be.user.User;
+import com.alibou.books_marketplace_be.user.UserInformation;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,28 +21,23 @@ import java.util.List;
 @SuperBuilder
 @Table(name = "BOOKS")
 public class Book extends AbstractEntity {
-    @NotBlank
     private String title;
-    @NotBlank
     private String author;
-    @NotNull
-    @Positive
     private BigDecimal price;
     private String description;
     private String image;
-    @NotNull
     @Enumerated(EnumType.STRING)
     private CategoryName category;
     @ManyToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
-    @OneToMany(mappedBy = "book")
-    private List<Rate> ratings;
     @ManyToOne
     @JoinColumn(name = "user_id")
-    private User admin;
-    @ManyToMany(mappedBy = "favoriteBooks")
-    private List<User> favoritedBy;
+    private UserInformation admin;
+    @ManyToMany(mappedBy = "whishlist")
+    private List<UserInformation> whishlistedBy;
+    private int numberOfRatings;
+    private double averageRating;
 
 
 }

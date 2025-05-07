@@ -17,6 +17,7 @@ import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -25,15 +26,9 @@ import java.util.List;
 @SuperBuilder
 @Table(name = "CARTS")
 public class Cart extends AbstractEntity {
-    @NotNull
-    @Positive
     private BigDecimal unitPrice;
-    @NotBlank
-    private String title;
 
     private int quantity;
-    @NotNull
-    @PositiveOrZero
     private BigDecimal totalPrice;
     @OneToMany(mappedBy = "cart")
     private List<Book> books;

@@ -2,15 +2,8 @@ package com.alibou.books_marketplace_be.payment;
 
 import com.alibou.books_marketplace_be.common.AbstractEntity;
 import com.alibou.books_marketplace_be.order.Order;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
+import com.alibou.books_marketplace_be.user.UserInformation;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,6 +12,7 @@ import lombok.experimental.SuperBuilder;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -29,21 +23,15 @@ import java.util.Date;
 @Table(name = "PAYMENTS")
 public class Payment extends AbstractEntity {
 
-    @NotNull
     @OneToOne
     @JoinColumn(name = "order_id")
     private Order order;
-
-    @NotBlank
     private String cardNumber;
+    private String cardHolderName;
 
-    @NotNull
-    @Positive
     private BigDecimal amount;
-
-    @NotBlank
     private String cvc;
-
-    @NotNull
     private Date expirationDate;
+    @OneToMany(mappedBy = "payment")
+    private List<UserInformation> userInformations;
 }
