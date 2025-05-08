@@ -27,7 +27,6 @@ public class UserInformation extends AbstractEntity {
     @Column(unique = true)
     private String email;
     private String phone;
-
     @OneToMany(mappedBy = "buyer")
     private List<Order> orders;
     @ManyToMany
@@ -39,8 +38,8 @@ public class UserInformation extends AbstractEntity {
     private List<Book> whishlist;
     @ManyToOne
     private ShippingAddress shippingAddress;
-    @ManyToOne
-    private Payment card;
+    @OneToMany (mappedBy = "payment")
+    private List<Payment> card;
 
 
 }

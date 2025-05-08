@@ -27,7 +27,6 @@ import java.util.List;
 @Table(name = "CARTS")
 public class Cart extends AbstractEntity {
     private BigDecimal unitPrice;
-
     private int quantity;
     private BigDecimal totalPrice;
     @OneToMany(mappedBy = "cart")

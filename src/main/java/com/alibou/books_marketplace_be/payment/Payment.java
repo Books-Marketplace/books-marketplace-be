@@ -32,6 +32,6 @@ public class Payment extends AbstractEntity {
     private BigDecimal amount;
     private String cvc;
     private Date expirationDate;
-    @OneToMany(mappedBy = "payment")
-    private List<UserInformation> userInformations;
+    @ManyToOne
+    private UserInformation userInformations;
 }
