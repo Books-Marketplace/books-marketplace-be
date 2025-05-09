@@ -36,9 +36,9 @@ public class UserInformation extends AbstractEntity {
             inverseJoinColumns = @JoinColumn(name = "book_id")
     )
     private List<Book> whishlist;
-    @ManyToOne
-    private ShippingAddress shippingAddress;
-    @OneToMany (mappedBy = "payment")
+    @OneToMany(mappedBy = "shippingAddress")
+    private List<ShippingAddress> shippingAddress;
+    @OneToMany(mappedBy = "payment")
     private List<Payment> card;
 
 

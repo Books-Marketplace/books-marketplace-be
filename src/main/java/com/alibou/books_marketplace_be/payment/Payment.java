@@ -33,5 +33,5 @@ public class Payment extends AbstractEntity {
     private String cvc;
     private Date expirationDate;
     @ManyToOne
-    private UserInformation userInformations;
+    private UserInformation userInformation;
 }

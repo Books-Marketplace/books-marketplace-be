@@ -4,6 +4,7 @@ import com.alibou.books_marketplace_be.common.AbstractEntity;
 import com.alibou.books_marketplace_be.order.Order;
 import com.alibou.books_marketplace_be.user.UserInformation;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,6 @@ public class ShippingAddress extends AbstractEntity {
     private String houseNumber;
     @OneToMany(mappedBy = "shippingAddress")
     private List<Order> orders;
-    @OneToMany(mappedBy = "shippingAddress")
-    private List<UserInformation> userInformations;
+    @ManyToOne
+    private UserInformation userInformation;
 }
