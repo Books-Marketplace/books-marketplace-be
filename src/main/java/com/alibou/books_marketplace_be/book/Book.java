@@ -1,13 +1,17 @@
 package com.alibou.books_marketplace_be.book;
 
+import com.alibou.books_marketplace_be.cart.Cart;
 import com.alibou.books_marketplace_be.common.AbstractEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import com.alibou.books_marketplace_be.user.UserInformation;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Getter
@@ -19,9 +23,21 @@ import lombok.experimental.SuperBuilder;
 public class Book extends AbstractEntity {
     private String title;
     private String author;
-    private double price;
+    private BigDecimal price;
     private String description;
+    private String image;
+    @Enumerated(EnumType.STRING)
     private CategoryName category;
-    //private User Seller; to be added once user entity is created
+    @ManyToOne
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserInformation admin;
+    @ManyToMany(mappedBy = "whishlist")
+    private List<UserInformation> whishlistedBy;
+    private int numberOfRatings;
+    private double averageRating;
+
 
 }
