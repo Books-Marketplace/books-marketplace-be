@@ -22,6 +22,7 @@ import java.util.List;
 @Table(name = "BOOKS")
 public class Book extends AbstractEntity {
     private String title;
+    private String isbn;
     private String author;
     private BigDecimal price;
     private String description;
@@ -38,6 +39,7 @@ public class Book extends AbstractEntity {
     private List<UserInformation> whishlistedBy;
     private int numberOfRatings;
     private double averageRating;
+
 
 
 }

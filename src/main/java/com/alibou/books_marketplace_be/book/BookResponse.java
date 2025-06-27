@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Builder
 public class BookResponse {
-    private Long id;
+    private String id;
     private String title;
     private String author;
     private BigDecimal price;

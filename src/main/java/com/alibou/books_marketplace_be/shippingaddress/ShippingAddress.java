@@ -3,10 +3,7 @@ package com.alibou.books_marketplace_be.shippingaddress;
 import com.alibou.books_marketplace_be.common.AbstractEntity;
 import com.alibou.books_marketplace_be.order.Order;
 import com.alibou.books_marketplace_be.user.UserInformation;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,5 +28,6 @@ public class ShippingAddress extends AbstractEntity {
     @OneToMany(mappedBy = "shippingAddress")
     private List<Order> orders;
     @ManyToOne
+    @JoinColumn(name="user_id")
     private UserInformation userInformation;
 }
